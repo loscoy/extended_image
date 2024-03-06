@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:extended_image/src/typedef.dart';
 import 'package:flutter/material.dart';
 
@@ -384,6 +385,7 @@ class EditorConfig {
     this.hitTestBehavior = HitTestBehavior.deferToChild,
     this.editActionDetailsIsChanged,
     this.reverseMousePointerScrollDirection = false,
+    this.cropVerticalOffset,
   })  : assert(lineHeight > 0.0),
         assert(hitTestSize >= 0.0),
         assert(maxScale > 0.0),
@@ -457,6 +459,8 @@ class EditorConfig {
   /// true: zoom int => up, zoom out => down
   /// default is false
   final bool reverseMousePointerScrollDirection;
+
+  final double? cropVerticalOffset;
 }
 
 class CropAspectRatios {

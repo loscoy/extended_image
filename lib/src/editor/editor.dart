@@ -1,12 +1,14 @@
 import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
+
 import 'package:extended_image/src/image/raw_image.dart';
 import 'package:extended_image/src/utils.dart';
 import 'package:extended_image_library/extended_image_library.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
 import '../extended_image.dart';
 import 'crop_layer.dart';
 import 'editor_utils.dart';
@@ -158,6 +160,15 @@ class ExtendedImageEditorState extends State<ExtendedImageEditor> {
                         ? rect.height / cropRect.height
                         : rect.width / cropRect.width;
                     cropRect = rect;
+                  }
+                  if (_editorConfig!.cropVerticalOffset != null) {
+                    final ui.Rect tempRect = cropRect;
+                    cropRect = Rect.fromLTWH(
+                      tempRect.left,
+                      tempRect.top * _editorConfig!.cropVerticalOffset!,
+                      tempRect.width,
+                      tempRect.height,
+                    );
                   }
                   _editActionDetails!.cropRect = cropRect;
                 }
